@@ -16,7 +16,7 @@ It also integrates **Firebase Firestore** to save searches and uses **localStora
 
 ## Step-by-Step Setup (From Scratch)
 
-### 1️⃣ Create React App
+### Create React App
 
 1. Open your terminal.
 2. Create a new React project:
@@ -28,7 +28,8 @@ Start the development server to confirm it works:
 npm start
 The app should open at http://localhost:3000
 
-2️⃣ Set Up Firebase
+### Set Up Firebase
+
 Go to https://console.firebase.google.com/ and create a new project.
 
 **Enable Firestore Database.**
@@ -47,7 +48,8 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 REACT_APP_FIREBASE_MEASUREMENT_ID=your_measurement_id
 Restart your React server whenever you change .env.
 
-4️⃣ Implement Search Component
+### Implement Search Component
+
 Use Search.js to handle:
 
 GitHub API requests (https://api.github.com/search/users?q=username)
@@ -57,7 +59,8 @@ Display **avatars, usernames, profile links**
 Firebase Firestore logging
 Last 5 searches in localStorage
 
-6️⃣ Inspecting and Debugging
+### Inspecting and Debugging
+
 While running the app in your browser (http://localhost:3000):
 
 Open Developer Tools (Right-click → Inspect or F12).
@@ -76,13 +79,13 @@ Key: lastSearches
 
 You can view or modify the last 5 searched usernames.
 
-Firestore (Firebase Console):
+### Firestore (Firebase Console):
 
 Check the searches collection.
 
 Confirm each search query is saved with a timestamp.
 
-7️⃣ Running the App
+### Running the App
 
 npm start
 Enter a GitHub username and hit Search.
@@ -93,7 +96,8 @@ Scroll down further to see Scroll-to-top button.
 
 Click the last search buttons to repeat searches quickly.
 
-**Notes**
+### **Notes**
+
 Uses React hooks (useState, useEffect) for state and lifecycle.
 
 GitHub API is dynamic, no hardcoded users.
