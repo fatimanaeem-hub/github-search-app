@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+This React application allows users to search GitHub profiles by username.  
+It displays **avatar**, **username**, and a **link to the GitHub profile**.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It also integrates **Firebase Firestore** to save searches and uses **localStorage** to remember the last 5 searches.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Search GitHub users by username.
+- Display avatar, username, and profile link.
+- Load More button for pagination.
+- Scroll-to-top button appears when scrolling down.
+- Last 5 searches stored in **localStorage**.
+- Firebase integration for storing search queries in Firestore.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Step-by-Step Setup (From Scratch)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1️⃣ Create React App
 
-### `npm test`
+1. Open your terminal.
+2. Create a new React project:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npx create-react-app github-search-app
+cd github-search-app
+Start the development server to confirm it works:
 
-### `npm run build`
+npm start
+The app should open at http://localhost:3000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2️⃣ Set Up Firebase
+Go to https://console.firebase.google.com/ and create a new project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Enable Firestore Database.**
+In the project settings → General → Your apps → Web, copy the Firebase config keys.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In your React project root, create a .env file:
 
-### `npm run eject`
+**env**
+Copy code
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+REACT_APP_FIREBASE_MEASUREMENT_ID=your_measurement_id
+Restart your React server whenever you change .env.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4️⃣ Implement Search Component
+Use Search.js to handle:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+GitHub API requests (https://api.github.com/search/users?q=username)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Display **avatars, usernames, profile links**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Firebase Firestore logging
+Last 5 searches in localStorage
 
-## Learn More
+6️⃣ Inspecting and Debugging
+While running the app in your browser (http://localhost:3000):
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Open Developer Tools (Right-click → Inspect or F12).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Console Tab:**
 
-### Code Splitting
+Check for errors, logs, or console.log("FIREBASE CHECK", firebaseConfig) to verify Firebase keys.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Network Tab:
+Inspect GitHub API requests.
+Make sure requests are returning 200 OK.
 
-### Analyzing the Bundle Size
+**Application Tab → Local Storage:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Key: lastSearches
 
-### Making a Progressive Web App
+You can view or modify the last 5 searched usernames.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Firestore (Firebase Console):
 
-### Advanced Configuration
+Check the searches collection.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Confirm each search query is saved with a timestamp.
 
-### Deployment
+7️⃣ Running the App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+npm start
+Enter a GitHub username and hit Search.
 
-### `npm run build` fails to minify
+Scroll down for Load More.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Scroll down further to see Scroll-to-top button.
+
+Click the last search buttons to repeat searches quickly.
+
+**Notes**
+Uses React hooks (useState, useEffect) for state and lifecycle.
+
+GitHub API is dynamic, no hardcoded users.
+
+Firebase Firestore stores each search query.
+
+localStorage keeps last 5 searches, even after page reloads.
+
+Hover effects and responsive grid for a better UI.
